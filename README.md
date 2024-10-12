@@ -60,16 +60,42 @@ This functionality has the purpose to work similarly to the ``HTML/CSS/EJS`` ver
 - **Submit Guess (``/submit-guess``)**: Processes the player's guess given by the URL (``/api/submit-guess?type1=type1&type2=type2&gen=gen``), and redirects to the results page (``/answer``).
 - **Answer Page (``/api/answer``)**: Displays the player's guesses, along with the correct Pokémon type and generation, but in ``JSON``.
 
+### Additional Functionalities:
+
+- **Security**: The game does not allow the player visit the answer page directly without submitting a guess.
+- **Search Generation by ID**: To obtain the generation of a Pokémon, the game uses a helper function to determine the generation based on the Pokémon's ID.
+  - Code snippet:
+
+  ```javascript
+  function determineGeneration(pokemonId) {
+    if (pokemonId <= 151) {
+      return 1;
+    } else if (pokemonId <= 251) {
+      return 2;
+    } else if (pokemonId <= 386) {
+      return 3;
+    } else if (pokemonId <= 493) {
+      return 4;
+    } else if (pokemonId <= 649) {
+      return 5;
+    } else if (pokemonId <= 721) {
+      return 6;
+    } else if (pokemonId <= 809) {
+      return 7;
+    } else {
+      return 8;
+    }
+  }
+  ```
+
+- **Error Handling**: The game handles errors such as missing data, displaying appropriate messages to the player.
+
 ## Features:
 
 - The game uses a random Pokémon ID to fetch data from the *PokéAPI*.
 - The user is asked to guess the Pokémon's type and generation.
 - After submitting their guesses, the results are displayed on a new page showing the correct type and generation.
 - The game uses Express as the server and EJS for rendering views.
-
-### Additional Features:
-
-- **Security**: The game does not let the player visit the answer page directly without submitting a guess.
 
 ## Technologies Used
 
