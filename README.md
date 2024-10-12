@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# PokeAPI
-Web Pages that use the PokeAPI
-=======
 # Pokémon Guessing Game
 
 ## Description
