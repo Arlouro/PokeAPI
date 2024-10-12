@@ -20,8 +20,8 @@ router.get('/guess', async (req, res) => {
 
 // Submit guess
 router.post('/submit-guess', (req, res) => {
-  const { type1, type2, gen } = req.body;
-  gameData.playerAnswers = { type1, type2, gen };
+  const { type1, type2, generation } = req.body;
+  gameData.playerAnswers = { type1, type2, generation };
   res.redirect('/answer');
 });
 
