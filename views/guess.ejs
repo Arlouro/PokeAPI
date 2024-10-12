@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Pokémon!</title>
+  <link rel="stylesheet" href="/styles/guess.css">
+</head>
+<body>
+  <h1>Guess the Pokémon!</h1>
+  <img src="<%= pokemonData.sprites.front_default %>" alt="Random Pokémon Sprite">
+  <h2><%= pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1) %></h2>
+  <form action="/submit-guess" method="POST">
+    <div class="guess-options">
+      <div>
+        <label for="type1">Guess the 1st type:</label>
+        <select name="type1" id="type1" required>
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="electric">Electric</option>
+          <option value="grass">Grass</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="type2">Guess the 2nd type (optional):</label>
+        <select name="type2" id="type2">
+          <option value="">None</option> <!-- Option for no second type -->
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="electric">Electric</option>
+          <option value="grass">Grass</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="generation">Guess the generation:</label>
+        <select name="generation" id="generation" required>
+          <option value="1">Generation 1</option>
+          <option value="2">Generation 2</option>
+          <option value="3">Generation 3</option>
+          <option value="4">Generation 4</option>
+          <option value="5">Generation 5</option>
+          <option value="6">Generation 6</option>
+          <option value="7">Generation 7</option>
+          <option value="8">Generation 8</option>
+          <option value="9">Generation 9</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit">Submit Guess</button>
+  </form>
+</body>
+</html>

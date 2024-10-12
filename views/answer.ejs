@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" href="/styles/answer.css">
+</head>
+<body>
+    <h1>Your Guess Results</h1>
+    <img src="<%= pokemonData.sprites.front_default %>" alt="Random Pokémon Sprite">
+    <p><%= pokemonData.name %></p>
+
+    <div>
+      <h2>Correct Answers</h2>
+      <p>Type: <%= pokemonData.types.map(type => type.type.name).join(', ') %></p>
+      <p>Generation: <%= determineGeneration(pokemonData.id) %></p>
+      
+      <h2>Your Answers</h2>
+      <p>Type: <%= playerAnswers.type1 %><%= playerAnswers.type2 ? ', ' + playerAnswers.type2 : '' %></p>
+      <p>Generation: <%= playerAnswers.generation %></p>
+      <form action="/guess">
+          <button type="submit">Play Again</button>
+      </form>
+    </div>
+  </body>
+</html>
