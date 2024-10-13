@@ -186,7 +186,8 @@ Here’s a brief overview of the folder structure of the project:
 │   └── answer.ejs       # Answer page template
 │
 ├── /routes              # Express route definitions
-│   └── gameRoutes.js    # Handles all game routes
+│   ├── gameRoutes.js    # Handles all game routes
+│   └── gameRoutesJSON.js # Handles all game routes in JSON
 │
 ├── /helpers             # Helper functions (e.g., determine Pokémon generation)
 │   └── pokemonHelpers.js # Contains helper functions like determineGeneration
