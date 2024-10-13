@@ -34,14 +34,16 @@ npm start
 
 The server will start and be accessible at ``http://localhost:8080.``
 
-4. **Access the game:** Open your browser and go to ``http://localhost:8080``. You will see the home page. Click the "Start Game" button to begin.
+4. **Access the game:** 
+
+- Open your browser and go to ``http://localhost:8080``. You will see the home page. Click the "Start Game" button to begin.
+- Alternatively, you can access the JSON version of the game by going to ``http://localhost:8080/api``.
 
 5. **Gameplay:**
 
-- The game will show a random Pokémon and prompt you to guess its type and generation.
+- The game will show a random Pokémon and prompt you to guess its type(s) and generation.
 - After submitting your guess, you'll be redirected to a results page where your answers will be evaluated.
 - If you want to play again, you can simply click "Try Again."
-
 
 ## Functionalities
 
@@ -55,12 +57,13 @@ The server will start and be accessible at ``http://localhost:8080.``
 ### JSON
 
 This functionality has the purpose to work similarly to the ``HTML/CSS/EJS`` version but showing the information only in ``JSON``.
+
 - **Home Page (``/api``)**: Displays a welcome page with instruction on how to advance.
 - **Guess Page(``/api/guess``)**: Displays a random Pokémon name and id in ``JSON``, and prompts the user to guess the Pokémon's type and generation, but this time through the URL.
 - **Submit Guess (``/submit-guess``)**: Processes the player's guess given by the URL (``/api/submit-guess?type1=type1&type2=type2&gen=gen``), and redirects to the results page (``/answer``).
 - **Answer Page (``/api/answer``)**: Displays the player's guesses, along with the correct Pokémon type and generation, but in ``JSON``.
 
-### Additional Functionalities:
+### Additional Functionalities
 
 - **Security**: The game does not allow the player visit the answer page directly without submitting a guess.
 - **Search Generation by ID**: To obtain the generation of a Pokémon, the game uses a helper function to determine the generation based on the Pokémon's ID.
@@ -90,7 +93,7 @@ This functionality has the purpose to work similarly to the ``HTML/CSS/EJS`` ver
 
 - **Error Handling**: The game handles errors such as missing data, displaying appropriate messages to the player.
 
-## Features:
+## Features
 
 - The game uses a random Pokémon ID to fetch data from the *PokéAPI*.
 - The user is asked to guess the Pokémon's type and generation.
@@ -199,4 +202,3 @@ Here’s a brief overview of the folder structure of the project:
 ## Conclusion
 
 This project provides a fun and simple Pokémon guessing game using Express.js and EJS. It fetches real-time Pokémon data from the PokéAPI and allows users to guess the Pokémon's type and generation. After submitting their guesses, the player can see the correct answers and try again.
->>>>>>> master
