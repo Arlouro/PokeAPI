@@ -2,6 +2,9 @@ const express = require('express');
 const { determineGeneration, getPokemonData } = require('../helpers/pokemonHelpers');  // Helper function
 const router = express.Router();
 
+// Game Data
+let gameData = {};
+
 // Home page route
 router.get('/', (req, res) => {
   const info = {};
@@ -14,8 +17,8 @@ router.get('/', (req, res) => {
 router.get('/guess', async (req, res) => {
   const pokemonId = Math.floor(Math.random() * 898) + 1;
   const pokemonData = await getPokemonData(pokemonId);  // Fetch Pokémon data from API
+  gameData.pokemonData = pokemonData;  // Store pokemonData in gameData
 
-  // Get only the necessary data
   const { id, name } = pokemonData;
   const pokemon = { id, name };
   const instructions = 'To guess the type and generation of the pokemon, visit /api/submit-guess?type1=type1&type2=type2&gen=gen';
@@ -25,30 +28,38 @@ router.get('/guess', async (req, res) => {
 });
 
 // Get player answers through URL and redirect to answer page
-router.get('/submit-guess', async (req, res) => {
-  const type1 = req.query.type1;
-  const type2 = req.query.type2;
-  const gen = req.query.gen;
+router.get('/submit-guess', (req, res) => {
+  const { type1, type2, gen } = req.query;
+  
+  if (!gameData.pokemonData) {
+    return res.status(400).json({ error: 'No Pokémon data found. Please start from /api/guess.' });
+  }
+  
+  gameData.playerAnswers = { type1, type2, generation: gen };  // Store player's answers in gameData
+  res.redirect('/api/answer');
+});
 
-  if (!type1 || !gen) {
-    return res.status(400).json({ error: 'Type 1 and generation are required' });
+// Answer page route
+router.get('/answer', (req, res) => {
+  const pokemonData = gameData.pokemonData;
+  const playerAnswers = gameData.playerAnswers;
+
+  if (!pokemonData) {
+    return res.status(400).json({ error: 'No Pokémon data found. Please start from /api/guess.' });
   }
 
-  const pokemonId = Math.floor(Math.random() * 898) + 1;
-  const pokemonData = await getPokemonData(pokemonId);  // Fetch Pokémon data from API
-
-  const correctAnswers = {
-    type1: pokemonData.types && pokemonData.types[0] ? pokemonData.types[0].type.name : 'Unknown',
-    type2: pokemonData.types && pokemonData.types[1] ? pokemonData.types[1].type.name : null,
-    gen: determineGeneration(pokemonData.id),
-  };
+  if (!playerAnswers) {
+    return res.status(400).json({ error: 'No player answers found. Please submit your guess first.' });
+  }
 
   const { id, name, types } = pokemonData;
   const pokemon = { id, name, types };
-  const playerAnswers = { type1, type2, gen };
-  const results = { pokemon, playerAnswers, correctAnswers };
 
-  res.json(results);
+  res.json({
+    pokemon,
+    playerAnswers,
+    correctGeneration: determineGeneration(pokemonData.id),  // Correct generation calculation
+  });
 });
 
 module.exports = router;
