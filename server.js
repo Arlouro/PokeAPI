@@ -6,7 +6,7 @@ const gameRoutes = require('./routes/gameRoutes');
 const gameRoutesJSON = require('./routes/gameRoutesJSON');
 
 const app = express();
-const port = 8000;
+const port = 8080;
 
 // Middleware
 app.set('view engine', 'ejs');

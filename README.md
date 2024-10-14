@@ -17,7 +17,6 @@ npm (Node Package Manager) to install dependencies.
 
 ```bash
 git clone <repository-url>
-cd poke-api-project
 ```
 
 2. **Install dependencies:** Inside the project directory, run:
