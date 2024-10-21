@@ -201,3 +201,8 @@ Here’s a brief overview of the folder structure of the project:
 ## Conclusion
 
 This project provides a fun and simple Pokémon guessing game using Express.js and EJS. It fetches real-time Pokémon data from the PokéAPI and allows users to guess the Pokémon's type and generation. After submitting their guesses, the player can see the correct answers and try again.
+
+## Things to Correct or Improve
+
+- Remove unnecessary comments
+- Refactor the variable names to be more descriptive for example `pokemonId` to `pokemonID`, `req` to `request_message`, `res` to `response_message`, etc.
